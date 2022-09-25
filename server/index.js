@@ -6,6 +6,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/loaderio-374a1cdaffdfe05d1a2bb501e9a0b295.txt", (req, res) => (res.send("loaderio-374a1cdaffdfe05d1a2bb501e9a0b295")));
+
 // Q & A - Routes
 
 // get

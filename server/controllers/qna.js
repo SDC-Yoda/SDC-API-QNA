@@ -1,10 +1,12 @@
 const pool = require('../db.js')
 
+
 module.exports = {
   getQuestions: (req, res) => {
     var key = Object.keys(req.query)[0];
     var id = Object.values(req.query)[0];
     id = Number(id);
+    
 
     const query = {
       text:
@@ -54,11 +56,15 @@ module.exports = {
     }
     pool.query(query)
       .then((response) => {
-        var final = response.rows[0].json_build_object;
-        res.status(200).send(final);
+        if (response.rows[0] === undefined) {
+	  return res.status(200).send("no product");
+	} else {
+	   var final = response.rows[0].json_build_object;
+	  return  res.status(200).send(final);
+	}
       })
       .catch((err) => {
-        console.log('err = ', err);
+	console.log('err = ', err);
         res.status(400).send(err);
       })
   },
